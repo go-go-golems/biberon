@@ -19,7 +19,7 @@ test:
 
 build:
 	go generate ./...
-	go build
+	go build ./...
 
 goreleaser:
 	goreleaser release --snapshot --rm-dist
@@ -32,4 +32,5 @@ release:
 	GOPROXY=proxy.golang.org go list -m github.com/wesen/biberon@${VERSION}
 
 bump-glazed:
-	go get github.com/wesen/glazed@latest
+	go get github.com/wesen/glazed@main
+	go mod tidy

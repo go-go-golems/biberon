@@ -5,7 +5,7 @@ go 1.19
 require (
 	github.com/caltechlibrary/bibtex v0.0.8
 	github.com/spf13/cobra v1.6.1
-	github.com/wesen/glazed v0.2.0
+	github.com/wesen/glazed v0.2.1
 )
 
 require (
@@ -32,8 +32,8 @@ require (
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/yuin/goldmark v1.5.2 // indirect
 	github.com/yuin/goldmark-emoji v1.0.1 // indirect
-	golang.org/x/net v0.0.0-20221014081412-f15817d10f9b // indirect
-	golang.org/x/sys v0.0.0-20220908164124-27713097b956 // indirect
+	golang.org/x/net v0.5.0 // indirect
+	golang.org/x/sys v0.4.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
