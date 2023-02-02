@@ -2,7 +2,7 @@
 
 all: gifs
 
-VERSION=v0.1.0
+VERSION=v0.0.1
 
 TAPES=$(shell ls doc/vhs/*tape)
 gifs: $(TAPES)
@@ -29,7 +29,7 @@ tag-release:
 
 release:
 	git push origin ${VERSION}
-	GOPROXY=proxy.golang.org go list -m github.com/wesen/sqleton@${VERSION}
+	GOPROXY=proxy.golang.org go list -m github.com/wesen/biberon@${VERSION}
 
 bump-glazed:
 	go get github.com/wesen/glazed@latest
