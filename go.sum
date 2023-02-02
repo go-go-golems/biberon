@@ -1,0 +1,6 @@
+github.com/caltechlibrary/bibtex v0.0.8 h1:lrnuAVJqEMaSNLE9jPJ5qDWugZcisWfqjZYK43mn1Lg=
+github.com/caltechlibrary/bibtex v0.0.8/go.mod h1:hnIWUT6c+wfIWrV1UKPHU7pBLQii1ml8c5l36bc7Zb0=
+github.com/google/go-cmp v0.5.1/go.mod h1:v8dTdLbMG2kIc/vJvl+f65V22dbkXbowE6jgT/gNBxE=
+github.com/jschaf/bibtex v0.0.0-20201112053810-8c74eef33877 h1:YbhH63NQDUMEUQrf5PzXZPi0v86Hb68dqCI3T+qxNZ0=
+github.com/jschaf/bibtex v0.0.0-20201112053810-8c74eef33877/go.mod h1:IaJP0gbRj/M1rpWWS7VLtOM4Akt1qa79rV8H8OcGT2g=
+golang.org/x/xerrors v0.0.0-20191204190536-9bdfabe68543/go.mod h1:I/5z698sn9Ka8TeJc9MKroUUfqBBauWjQqLJ2OPfmY0=
