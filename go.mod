@@ -4,8 +4,8 @@ go 1.19
 
 require (
 	github.com/caltechlibrary/bibtex v0.0.8
+	github.com/go-go-golems/glazed v0.2.4
 	github.com/spf13/cobra v1.6.1
-	github.com/wesen/glazed v0.2.2-0.20230204161420-28418ad7e774
 )
 
 require (

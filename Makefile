@@ -32,5 +32,5 @@ release:
 	GOPROXY=proxy.golang.org go list -m github.com/wesen/biberon@${VERSION}
 
 bump-glazed:
-	go get github.com/wesen/glazed@main
+	go get github.com/go-go-golems/glazed@main
 	go mod tidy

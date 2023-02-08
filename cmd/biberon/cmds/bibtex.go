@@ -3,9 +3,9 @@ package cmds
 import (
 	"fmt"
 	"github.com/caltechlibrary/bibtex"
+	"github.com/go-go-golems/glazed/pkg/cli"
+	"github.com/go-go-golems/glazed/pkg/middlewares"
 	"github.com/spf13/cobra"
-	"github.com/wesen/glazed/pkg/cli"
-	"github.com/wesen/glazed/pkg/middlewares"
 	"os"
 )
 

@@ -2,9 +2,9 @@ package main
 
 import (
 	"embed"
+	"github.com/go-go-golems/glazed/pkg/help"
 	"github.com/spf13/cobra"
 	"github.com/wesen/biberon/cmd/biberon/cmds"
-	"github.com/wesen/glazed/pkg/help"
 )
 
 var rootCmd = &cobra.Command{
@@ -21,7 +21,7 @@ var docFS embed.FS
 
 func init() {
 	helpSystem := help.NewHelpSystem()
-	err := helpSystem.LoadSectionsFromEmbedFS(docFS, ".")
+	err := helpSystem.LoadSectionsFromFS(docFS, ".")
 	if err != nil {
 		panic(err)
 	}
