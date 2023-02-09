@@ -2,9 +2,9 @@ package main
 
 import (
 	"embed"
+	"github.com/go-go-golems/biberon/cmd/biberon/cmds"
 	"github.com/go-go-golems/glazed/pkg/help"
 	"github.com/spf13/cobra"
-	"github.com/wesen/biberon/cmd/biberon/cmds"
 )
 
 var rootCmd = &cobra.Command{

@@ -1,4 +1,4 @@
-module github.com/wesen/biberon
+module github.com/go-go-golems/biberon
 
 go 1.19
 
