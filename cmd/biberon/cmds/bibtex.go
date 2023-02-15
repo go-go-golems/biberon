@@ -61,5 +61,8 @@ var BibtexCmd = &cobra.Command{
 
 func init() {
 	BibtexCmd.Flags().SortFlags = false
-	cli.AddFlags(BibtexCmd, cli.NewFlagsDefaults())
+	err := cli.AddFlags(BibtexCmd, cli.NewFlagsDefaults())
+	if err != nil {
+		panic(err)
+	}
 }
