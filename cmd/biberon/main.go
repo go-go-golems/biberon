@@ -26,19 +26,7 @@ func init() {
 		panic(err)
 	}
 
-	helpFunc, usageFunc := help.GetCobraHelpUsageFuncs(helpSystem)
-	helpTemplate, usageTemplate := help.GetCobraHelpUsageTemplates(helpSystem)
-
-	_ = usageFunc
-	_ = usageTemplate
-
-	rootCmd.SetHelpFunc(helpFunc)
-	rootCmd.SetUsageFunc(usageFunc)
-	rootCmd.SetHelpTemplate(helpTemplate)
-	rootCmd.SetUsageTemplate(usageTemplate)
-
-	helpCmd := help.NewCobraHelpCommand(helpSystem)
-	rootCmd.SetHelpCommand(helpCmd)
+	helpSystem.SetupCobraRootCommand(rootCmd)
 
 	rootCmd.AddCommand(cmds.BibtexCmd)
 }
