@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"github.com/caltechlibrary/bibtex"
 	"github.com/go-go-golems/glazed/pkg/cli"
-	"github.com/go-go-golems/glazed/pkg/middlewares"
+	"github.com/go-go-golems/glazed/pkg/middlewares/table"
 	"github.com/spf13/cobra"
 	"os"
 )
@@ -19,10 +19,10 @@ var BibtexCmd = &cobra.Command{
 			os.Exit(1)
 		}
 
-		gp, of, err := cli.SetupProcessor(cmd)
+		gp, of, err := cli.CreateGlazedProcessorFromCobra(cmd)
 		cobra.CheckErr(err)
 
-		gp.OutputFormatter().AddTableMiddleware(middlewares.NewReorderColumnOrderMiddleware([]string{"id", "type", "keys", "title", "author", "year"}))
+		gp.OutputFormatter().AddTableMiddleware(table.NewReorderColumnOrderMiddleware([]string{"id", "type", "keys", "title", "author", "year"}))
 
 		for _, arg := range args {
 			buf, err := os.ReadFile(arg)
@@ -61,7 +61,7 @@ var BibtexCmd = &cobra.Command{
 
 func init() {
 	BibtexCmd.Flags().SortFlags = false
-	err := cli.AddFlags(BibtexCmd, cli.NewFlagsDefaults())
+	err := cli.AddGlazedProcessorFlagsToCobraCommand(BibtexCmd)
 	if err != nil {
 		panic(err)
 	}
