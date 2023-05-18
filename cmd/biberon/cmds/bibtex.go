@@ -19,10 +19,12 @@ var BibtexCmd = &cobra.Command{
 			os.Exit(1)
 		}
 
-		gp, of, err := cli.CreateGlazedProcessorFromCobra(cmd)
+		gp, err := cli.CreateGlazedProcessorFromCobra(cmd)
 		cobra.CheckErr(err)
 
 		gp.OutputFormatter().AddTableMiddleware(table.NewReorderColumnOrderMiddleware([]string{"id", "type", "keys", "title", "author", "year"}))
+
+		ctx := cmd.Context()
 
 		for _, arg := range args {
 			buf, err := os.ReadFile(arg)
@@ -46,16 +48,14 @@ var BibtexCmd = &cobra.Command{
 					}
 					row[k] = cleanV
 				}
-				err = gp.ProcessInputObject(row)
+				err = gp.ProcessInputObject(ctx, row)
 				cobra.CheckErr(err)
 			}
 
 		}
 
-		s, err := of.Output()
+		err = gp.OutputFormatter().Output(ctx, os.Stdout)
 		cobra.CheckErr(err)
-		fmt.Print(s)
-
 	},
 }
 
