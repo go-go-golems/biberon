@@ -4,7 +4,8 @@ import (
 	"fmt"
 	"github.com/caltechlibrary/bibtex"
 	"github.com/go-go-golems/glazed/pkg/cli"
-	"github.com/go-go-golems/glazed/pkg/middlewares/table"
+	"github.com/go-go-golems/glazed/pkg/middlewares/row"
+	"github.com/go-go-golems/glazed/pkg/types"
 	"github.com/spf13/cobra"
 	"os"
 )
@@ -22,7 +23,7 @@ var BibtexCmd = &cobra.Command{
 		gp, err := cli.CreateGlazedProcessorFromCobra(cmd)
 		cobra.CheckErr(err)
 
-		gp.OutputFormatter().AddTableMiddleware(table.NewReorderColumnOrderMiddleware([]string{"id", "type", "keys", "title", "author", "year"}))
+		gp.AddRowMiddleware(row.NewReorderColumnOrderMiddleware([]string{"id", "type", "keys", "title", "author", "year"}))
 
 		ctx := cmd.Context()
 
@@ -34,10 +35,11 @@ var BibtexCmd = &cobra.Command{
 			cobra.CheckErr(err)
 
 			for _, e := range elts {
-				row := make(map[string]interface{})
-				row["id"] = e.ID
-				row["type"] = e.Type
-				row["keys"] = e.Keys
+				row := types.NewRow(
+					types.MRP("id", e.ID),
+					types.MRP("type", e.Type),
+					types.MRP("keys", e.Keys),
+				)
 				for k, v := range e.Tags {
 					// strip { and } from v
 					cleanV := v
@@ -46,15 +48,18 @@ var BibtexCmd = &cobra.Command{
 							cleanV = cleanV[1 : len(cleanV)-1]
 						}
 					}
-					row[k] = cleanV
+					row.Set(k, cleanV)
 				}
-				err = gp.ProcessInputObject(ctx, row)
+				err = gp.AddRow(ctx, row)
 				cobra.CheckErr(err)
 			}
 
 		}
 
-		err = gp.OutputFormatter().Output(ctx, os.Stdout)
+		err = gp.Finalize(ctx)
+		cobra.CheckErr(err)
+
+		err = gp.OutputFormatter().Output(ctx, gp.GetTable(), os.Stdout)
 		cobra.CheckErr(err)
 	},
 }
