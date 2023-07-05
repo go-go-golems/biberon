@@ -20,7 +20,7 @@ var BibtexCmd = &cobra.Command{
 			os.Exit(1)
 		}
 
-		gp, err := cli.CreateGlazedProcessorFromCobra(cmd)
+		gp, _, err := cli.CreateGlazedProcessorFromCobra(cmd)
 		cobra.CheckErr(err)
 
 		gp.AddRowMiddleware(row.NewReorderColumnOrderMiddleware([]string{"id", "type", "keys", "title", "author", "year"}))
@@ -56,10 +56,7 @@ var BibtexCmd = &cobra.Command{
 
 		}
 
-		err = gp.Finalize(ctx)
-		cobra.CheckErr(err)
-
-		err = gp.OutputFormatter().Output(ctx, gp.GetTable(), os.Stdout)
+		err = gp.Close(ctx)
 		cobra.CheckErr(err)
 	},
 }
